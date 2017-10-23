@@ -1,4 +1,4 @@
-group 'sandbox'
+group 'java_pft'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -6,12 +6,13 @@ apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
+mainClassName = "ru.stqa.pft.sandbox.MyFirstProgram"
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-mainClassName = "ru.stqa.pft.sanbox.MyFirstProgram"

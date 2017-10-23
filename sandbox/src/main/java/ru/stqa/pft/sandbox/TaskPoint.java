@@ -1,4 +1,4 @@
-package ru.stqa.pft.sanbox;
+package ru.stqa.pft.sandbox;
 
 public class TaskPoint {
     public static void main(String[] args) {
