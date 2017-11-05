@@ -8,9 +8,17 @@ public class AddNewContactTest extends TestBase {
     @Test
     public void testAddNewContact() {
         app.getContactHelper().goToContactPage();
-        app.getContactHelper().fillContactForm(new ContactData("Jane", "Smith", "743 Evergreen Terrace, Springfield, Anytown", "555-55-55", "81234567890", "smith@jane.org"));
+        ContactData contactData = new ContactData(
+                "Jane",
+                "Smith",
+                "743 Evergreen Terrace, Springfield, Anytown",
+                "555-55-55",
+                "81234567890",
+                "smith@jane.org",
+                "test1");
+        app.getContactHelper().fillContactForm(contactData, true);
         app.getContactHelper().submitNewContact();
-        app.getContactHelper().returnToHome();
+        app.getNavigationHelper().gotoHomePage();
     }
 
 }
