@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GroupModificationTests extends TestBase {
 
-    @Test
+    @Test(enabled = false)
     public void testGroupModification() {
         app.getNavigationHelper().gotoGroupPage();
         if (! app.getGroupHelper().isThereAGroup()) {

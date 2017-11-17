@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GroupDeletionTests extends TestBase {
 
-    @Test
+    @Test(enabled = false)
     public void testGroupDeletion() {
         app.getNavigationHelper().gotoGroupPage();
         if (! app.getGroupHelper().isThereAGroup()) {
