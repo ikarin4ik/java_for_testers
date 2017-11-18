@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EditContactTest extends TestBase {
 
-    @Test
+    @Test(enabled = false)
     public void testEditContact(){
         if (!app.getContactHelper().isThereAContact()) {
             ContactData contactData = new ContactData(

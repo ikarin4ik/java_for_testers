@@ -8,7 +8,7 @@ import java.util.List;
 
 public class DeleteContactTest extends TestBase {
 
-    @Test
+    @Test(enabled = false)
     public void testDeleteContact() {
         if (!app.getContactHelper().isThereAContact()) {
             ContactData contactData = new ContactData(
