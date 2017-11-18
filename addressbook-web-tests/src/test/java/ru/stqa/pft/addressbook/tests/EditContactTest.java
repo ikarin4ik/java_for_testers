@@ -16,7 +16,7 @@ public class EditContactTest extends TestBase {
                     "Jane", "Smith", "743 Evergreen Terrace, Springfield, Anytown",
                     "555-55-55", "81234567890", "smith@jane.org", "test1");
             app.getContactHelper().createContact(contactData);
-            app.getNavigationHelper().gotoHomePage();
+            app.goTo().gotoHomePage();
         }
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().initContactEdit(before.size() - 1);
