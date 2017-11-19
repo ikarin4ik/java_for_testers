@@ -12,25 +12,25 @@ public class EditContactTest extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions(){
-        if (!app.getContactHelper().isThereAContact()) {
+        if (!app.contact().isThereAContact()) {
             ContactData contactData = new ContactData(
                     "Jane", "Smith", "743 Evergreen Terrace, Springfield, Anytown",
                     "555-55-55", "81234567890", "smith@jane.org", "test1");
-            app.getContactHelper().createContact(contactData);
-            app.goTo().gotoHomePage();
+            app.contact().create(contactData);
+            app.goTo().homePage();
         }
     }
 
 
     @Test
     public void testEditContact(){
-        List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().list();
         int index = before.size() - 1;
-        app.getContactHelper().initContactEdit(index);
+        app.contact().initContactEdit(index);
         ContactData contact = new ContactData(before.get(index).getId(), "Jane", "Smith", "743 Evergreen Terrace, Springfield, Anytown",
                 "555-55-55", "81234567890", "smith@jane.org", null);
-        app.getContactHelper().editContact(index, contact);
-        List<ContactData> after = app.getContactHelper().getContactList();
+        app.contact().edit(index, contact);
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size());
 
         before.remove(before.size() - 1);

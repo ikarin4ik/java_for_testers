@@ -9,10 +9,10 @@ import java.util.List;
 
 public class AddNewContactTest extends TestBase {
 
-    @Test(enabled = false)
+    @Test
     public void testAddNewContact() {
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().goToAddContactPage();
+        List<ContactData> before = app.contact().list();
+        app.contact().goToAddContactPage();
         ContactData contact = new ContactData("John",
                 "Smith",
                 "743 Evergreen Terrace, Springfield, Anytown",
@@ -20,11 +20,11 @@ public class AddNewContactTest extends TestBase {
                 "81234567890",
                 "smith@jane.org",
                 "test1");
-        app.getContactHelper().fillContactForm(contact, true);
-        app.getContactHelper().submitNewContact();
-        List<ContactData> after = app.getContactHelper().getContactList();
+        app.contact().fillForm(contact, true);
+        app.contact().submit();
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() +1);
-        app.goTo().gotoHomePage();
+        app.goTo().homePage();
 
         before.add(contact);
         Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());

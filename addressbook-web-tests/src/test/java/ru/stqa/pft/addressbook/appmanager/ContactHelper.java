@@ -24,11 +24,11 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("home page"));
     }
 
-    public void submitNewContact() {
+    public void submit() {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void fillContactForm(ContactData contactData, boolean creation) {
+    public void fillForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("address"), contactData.getAddress());
@@ -50,26 +50,31 @@ public class ContactHelper extends HelperBase {
         click(By.cssSelector("div#content form input[name='update'][value='Update']:last-of-type"));
     }
 
-    public void selectContact(int index) {
+    public void select(int index) {
         wd.findElements(By.cssSelector("tbody tr td.center input")).get(index).click();
 
     }
 
-    public void deleteSelectedContact() {
+    public void deleteContact() {
         click(By.cssSelector("div.left input[type='button'][value='Delete']"));
         acceptAlert();
     }
 
-    public void createContact(ContactData contact) {
+    public void create(ContactData contact) {
         goToAddContactPage();
-        fillContactForm(contact, true);
-        submitNewContact();
+        fillForm(contact, true);
+        submit();
     }
 
-    public void editContact(int index, ContactData contact) {
-        fillContactForm(contact, false);
+    public void edit(int index, ContactData contact) {
+        fillForm(contact, false);
         updateContactForm();
         returnToContactPage();
+    }
+
+    public void delete(int index) {
+        select(index);
+        deleteContact();
     }
 
     public boolean isThereAContact() {
@@ -80,7 +85,7 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.cssSelector("tbody tr td.center input")).size();
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
         for (WebElement element : elements) {
