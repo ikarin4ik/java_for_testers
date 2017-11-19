@@ -66,6 +66,12 @@ public class ContactHelper extends HelperBase {
         submitNewContact();
     }
 
+    public void editContact(int index, ContactData contact) {
+        fillContactForm(contact, false);
+        updateContactForm();
+        returnToContactPage();
+    }
+
     public boolean isThereAContact() {
         return isElementPresent(By.cssSelector("tbody tr:nth-child(2) td.center:nth-child(1) input"));
     }

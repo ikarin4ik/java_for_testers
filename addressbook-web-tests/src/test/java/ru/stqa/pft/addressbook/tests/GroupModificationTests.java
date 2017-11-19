@@ -19,17 +19,17 @@ public class GroupModificationTests extends TestBase {
         }
     }
 
-        @Test
-        public void testGroupModification() {
-            Groups before = app.group().all();
-            GroupData modifiedGroup = before.iterator().next();
-            GroupData group = new GroupData()
-                    .withId(modifiedGroup.getId()).withName("test1").withHeader("test2").withFooter("test3");
-            app.group().modify(group);
-            Groups after = app.group().all();
-            assertEquals(after.size(), before.size());
+    @Test
+    public void testGroupModification() {
+        Groups before = app.group().all();
+        GroupData modifiedGroup = before.iterator().next();
+        GroupData group = new GroupData()
+                .withId(modifiedGroup.getId()).withName("test1").withHeader("test2").withFooter("test3");
+        app.group().modify(group);
+        Groups after = app.group().all();
+        assertEquals(after.size(), before.size());
 
-            assertThat(after, CoreMatchers.equalTo(before.without(modifiedGroup).withAdded(group)));
+        assertThat(after, CoreMatchers.equalTo(before.without(modifiedGroup).withAdded(group)));
 
-        }
     }
+}
