@@ -12,9 +12,9 @@ public class DeleteContactTest extends TestBase {
     @BeforeMethod
     public void ensurePreconditions(){
         if (app.contact().list().size() == 0) {
-            ContactData contactData = new ContactData(
-                    "Jane", "Smith", "743 Evergreen Terrace, Springfield, Anytown",
-                    "555-55-55", "81234567890", "smith@jane.org", "test1");
+            ContactData contactData = new ContactData().withFirstName("Jane").withLastName("Smith")
+                    .withAddress("743 Evergreen Terrace, Springfield, Anytown").withHomephone("555-55-55")
+                    .withMobilephone("81234567890").withEmail("smith@jane.org").withGroup("test1");
             app.contact().create(contactData);
             app.goTo().homePage();
         }

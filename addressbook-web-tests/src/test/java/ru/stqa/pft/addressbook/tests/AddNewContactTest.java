@@ -13,13 +13,9 @@ public class AddNewContactTest extends TestBase {
     public void testAddNewContact() {
         List<ContactData> before = app.contact().list();
         app.contact().goToAddContactPage();
-        ContactData contact = new ContactData("John",
-                "Smith",
-                "743 Evergreen Terrace, Springfield, Anytown",
-                "555-55-55",
-                "81234567890",
-                "smith@jane.org",
-                "test1");
+        ContactData contact = new ContactData().withFirstName("John").withLastName("Smith")
+                .withAddress("743 Evergreen Terrace, Springfield, Anytown").withHomephone("555-55-55")
+                .withMobilephone("81234567890").withEmail("smith@jane.org").withGroup("test1");
         app.contact().fillForm(contact, true);
         app.contact().submit();
         List<ContactData> after = app.contact().list();
