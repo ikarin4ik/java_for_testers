@@ -13,10 +13,10 @@ public class EditContactTest extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions(){
-        if (app.contact().list().size() == 0) {
+        if (app.contact().all().size() == 0) {
             ContactData contactData = new ContactData().withFirstName("Jane").withLastName("Smith")
                     .withAddress("743 Evergreen Terrace, Springfield, Anytown").withHomephone("555-55-55")
-                    .withMobilephone("81234567890").withEmail("smith@jane.org").withGroup("test1");
+                    .withMobilephone("81234567890").withWorkphone("33 34 33").withEmail("smith@jane.org").withGroup("test1");
             app.contact().create(contactData);
             app.goTo().homePage();
         }
