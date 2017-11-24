@@ -38,7 +38,7 @@ public class ContactEqualsTests extends TestBase {
 
     private String mergePhones(ContactData contact) {
         return Arrays.asList(contact.getHomephone(), contact.getMobilephone(), contact.getWorkphone())
-                .stream().filter((s) ->! s.equals(""))
+                .stream().filter((s) -> !s.isEmpty())
                 .map(ContactEqualsTests::cleaned)
                 .collect(Collectors.joining("\n"));
 
@@ -46,8 +46,7 @@ public class ContactEqualsTests extends TestBase {
 
     private String mergeEmails(ContactData contact) {
         return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
-                .stream().filter((s) ->! s.equals(""))
-                .map(ContactEqualsTests::cleanedEmails)
+                .stream().filter((s) -> !s.isEmpty())
                 .collect(Collectors.joining("\n"));
 
     }
@@ -56,7 +55,4 @@ public class ContactEqualsTests extends TestBase {
         return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
 
-    public static String cleanedEmails(String email) {
-        return email.replaceAll("\\s", "").replaceAll("[-()]", "");
-    }
 }
