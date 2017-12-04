@@ -12,8 +12,8 @@ import static org.testng.Assert.assertEquals;
 public class EditContactTest extends TestBase {
 
     @BeforeMethod
-    public void ensurePreconditions(){
-        if (app.contact().all().size() == 0) {
+    public void ensurePreconditions() {
+        if (app.db().contacts().size() == 0) {
             ContactData contactData = new ContactData().withFirstName("Jane").withLastName("Smith")
                     .withAddress("743 Evergreen Terrace, Springfield, Anytown").withHomephone("555-55-55")
                     .withMobilephone("81234567890").withWorkphone("33 34 33").withEmail("smith@jane.org").withGroup("test1");
@@ -23,20 +23,20 @@ public class EditContactTest extends TestBase {
     }
 
 
-    @Test
-    public void testEditContact(){
-        Contacts before = app.contact().all();
-        ContactData editContact = before.iterator().next();
-        app.contact().initContactEditbyId(editContact.getId());
-        ContactData contact = new ContactData()
-                .withId(editContact.getId())
-                .withFirstName("John").withLastName("Smith")
-                .withAddress("743 Evergreen Terrace, Springfield, Anytown").withHomephone("555-55-55")
-                .withMobilephone("81234567890").withEmail("smith@jane.org");
-        app.contact().edit(contact);
-        Contacts after = app.contact().all();
-        assertEquals(after.size(), before.size());
+        @Test
+        public void testEditContact(){
+            Contacts before = app.db().contacts();
+            ContactData editContact = before.iterator().next();
+            app.contact().initContactEditbyId(editContact.getId());
+            ContactData contact = new ContactData()
+                    .withId(editContact.getId())
+                    .withFirstName("John").withLastName("Smith")
+                    .withAddress("743 Evergreen Terrace, Springfield, Anytown").withHomephone("555-55-55")
+                    .withMobilephone("81234567890").withEmail("smith@jane.org");
+            app.contact().edit(contact);
+            Contacts after = app.db().contacts();
+            assertEquals(after.size(), before.size());
 
-        assertThat(after, equalTo(before.without(editContact).withAdded(contact)));
+            assertThat(after, equalTo(before.without(editContact).withAdded(contact)));
+        }
     }
-}

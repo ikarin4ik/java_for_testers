@@ -54,11 +54,11 @@ public class AddNewContactTest extends TestBase {
 
     @Test(dataProvider = "validContactsFromJson")
     public void testAddNewContact(ContactData contact) {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         app.contact().goToAddContactPage();
         app.contact().fillForm(contact, true);
         app.contact().submit();
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after.size(), equalTo(before.size() +1));
         app.goTo().homePage();
 

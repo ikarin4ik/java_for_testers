@@ -75,8 +75,13 @@ public class ContactData {
     private String photo;
 
     public File getPhoto() {
-        return new File (photo);
+        if (photo == null) {
+            return null;
+        } else {
+            return new File(photo);
+        }
     }
+
 
     public ContactData withPhoto(File photo) {
         this.photo = photo.getPath();
