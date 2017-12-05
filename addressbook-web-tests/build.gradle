@@ -34,6 +34,12 @@ task testGroups(type:Test) {
     if (project.hasProperty('target')) {
         systemProperty 'target', "${target}"
     }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
+    if (project.hasProperty('verifyContactUI')) {
+        systemProperty 'verifyContactUI', "${verifyContactUI}"
+    }
 }
 
 
@@ -46,6 +52,12 @@ task testContacts(type:Test) {
     }
     if (project.hasProperty('target')) {
         systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
+    if (project.hasProperty('verifyContactUI')) {
+        systemProperty 'verifyContactUI', "${verifyContactUI}"
     }
 
 }
