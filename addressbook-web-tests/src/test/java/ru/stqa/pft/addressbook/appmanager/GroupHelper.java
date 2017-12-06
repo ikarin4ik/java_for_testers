@@ -28,7 +28,7 @@ public class GroupHelper extends HelperBase {
         type(By.name("group_footer"), groupData.getFooter());
     }
 
-    public void initGroupCreatoin() {
+    public void initGroupCreation() {
         click(By.name("new"));
     }
 
@@ -49,7 +49,7 @@ public class GroupHelper extends HelperBase {
     }
 
     public void create(GroupData group) {
-        initGroupCreatoin();
+        initGroupCreation();
         fillGroupForm(group);
         submitGroupCreatoin();
         groupCache = null;

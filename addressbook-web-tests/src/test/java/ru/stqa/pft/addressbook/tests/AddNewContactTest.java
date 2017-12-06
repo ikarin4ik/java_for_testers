@@ -56,7 +56,9 @@ public class AddNewContactTest extends TestBase {
     @Test(dataProvider = "validContactsFromJson")
     public void testAddNewContact(ContactData contact) {
         Groups groups = app.db().groups();
-
+        File photo = new File("src/test/resources/pic.jpg");
+        ContactData newContact = new ContactData().withLastName("test_lastname").withFirstName("test_firstname").withPhoto(photo)
+                .inGroup(groups.iterator().next());
         Contacts before = app.db().contacts();
         app.contact().goToAddContactPage();
         app.contact().fillForm(contact, true);
