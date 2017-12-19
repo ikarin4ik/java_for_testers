@@ -59,4 +59,6 @@ public class TestBase {
         return new MantisConnectLocator()
                 .getMantisConnectPort(new URL(app.getProperty("mantis.connectUrl")));
     }
+
+    
 }
