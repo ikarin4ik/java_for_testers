@@ -41,16 +41,30 @@ public class TestBase {
     }
 
     public boolean isIssueOpen(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+        ObjectRef issueDataStatus = getIssueStatus(issueId);
+        return BigInteger.valueOf(10).equals(issueDataStatus.getId());
+    }
+
+    public boolean isIssueResolved(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+        ObjectRef issueDataStatus = getIssueStatus(issueId);
+        return BigInteger.valueOf(80).equals(issueDataStatus.getId());
+    }
+
+    public boolean isIssueClosed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+        ObjectRef issueDataStatus = getIssueStatus(issueId);
+        return BigInteger.valueOf(90).equals(issueDataStatus.getId());
+    }
+
+
+
+    private ObjectRef getIssueStatus(int issueId) throws ServiceException, MalformedURLException, RemoteException {
         MantisConnectPortType mc = getMantisConnect();
         IssueData issueData = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issueId));
-        ObjectRef issueDataStatus = issueData.getStatus();
-        return "new".equals(issueDataStatus.getName());
-
-
+        return issueData.getStatus();
     }
 
     public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
-        if (isIssueOpen(issueId)) {
+        if (! (isIssueResolved(issueId) || isIssueClosed(issueId))) {
             throw new SkipException("Ignored because of issue " + issueId);
         }
     }
