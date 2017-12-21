@@ -20,17 +20,33 @@ public class TestBase {
 
 
     public boolean isIssueOpen(int issueId) {
+        return new Integer(0).equals(getState(issueId));
+    }
+
+    public boolean isIssueResolved(int issueId) {
+        return new Integer(2).equals(getState(issueId));
+    }
+
+    public boolean isIssueClosed(int issueId) {
+        return  new Integer(3).equals(getState(issueId));
+    }
+
+    private Integer getState(int issueId) {
         String json = RestAssured.get("http://demo.bugify.com/api/issues/" + issueId + ".json").asString();
         JsonElement parsed = new JsonParser().parse(json);
         JsonElement issues = parsed.getAsJsonObject().get("issues");
         Set<Issue> issueSet = new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
         Issue issue = issueSet.stream().findFirst().orElse(null);
-        return 0 == issue.getState();
+        if (issue != null) {
+            return issue.getState();
+        }
+        else {
+            return null;
+        }
     }
 
-
     public void skipIfNotFixed(int issueId) {
-        if (isIssueOpen(issueId)) {
+        if (!(isIssueClosed(issueId) || isIssueResolved(issueId))) {
             throw new SkipException("Ignored because of issue " + issueId);
         }
     }
