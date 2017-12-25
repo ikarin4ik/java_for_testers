@@ -43,7 +43,7 @@ public class ApplicationManager {
         dbHelper = new DbHelper();
 
 
-        if("".equals(properties.getProperty("selenuium.server"))) {
+        if("".equals(properties.getProperty("selenium.server"))) {
             if (Objects.equals(browser, BrowserType.FIREFOX)) {
                 System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/stderr");
                 wd = new FirefoxDriver();
@@ -54,7 +54,7 @@ public class ApplicationManager {
            DesiredCapabilities capabilities = new DesiredCapabilities();
            capabilities.setBrowserName(browser);
            capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "mac")));
-            wd = new RemoteWebDriver(new URL(properties.getProperty("selenuium.server")), capabilities);
+            wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
 
         wd.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
@@ -90,7 +90,7 @@ public class ApplicationManager {
         return dbHelper;
     }
 
-    public byte[] takeScreenshoot() {
+    public byte[] takeScreenshot() {
         return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
     }
 }
