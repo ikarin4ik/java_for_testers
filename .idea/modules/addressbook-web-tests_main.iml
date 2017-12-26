@@ -19,6 +19,7 @@
     <orderEntry type="library" name="Gradle: mysql:mysql-connector-java:8.0.8-dmr" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate:hibernate-core:5.2.12.Final" level="project" />
     <orderEntry type="library" name="Gradle: ru.yandex.qatools.allure:allure-testng-adaptor:1.4.0.RC4" level="project" />
+    <orderEntry type="library" name="Gradle: org.robotframework:robotframework:3.0.2" level="project" />
     <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.17" level="project" />
     <orderEntry type="library" name="Gradle: org.seleniumhq.selenium:selenium-api:3.7.0" level="project" />
     <orderEntry type="library" name="Gradle: org.seleniumhq.selenium:selenium-chrome-driver:3.7.0" level="project" />
